@@ -14,16 +14,17 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
-
-Modal.setAppElement("#root");
 type CompanyItems = {
   company: string;
   product: string;
   price: string;
   description: string;
+  image: string;
 };
+
+Modal.setAppElement("#root");
 //!props:any is bad practice fix later
-const AddProduct = (props: any) => {
+export default function AddProduct(props: {items:CompanyItems[], onChange:any}){
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const [companyName, setCompanyName] = useState("");
@@ -105,7 +106,10 @@ const AddProduct = (props: any) => {
         style={customStyles}
         contentLabel="Add Product Modal"
       >
-        <form className="new-product-form">
+        <div className="title">
+             Add Item
+        </div>
+        <div className="new-product-form">
           <input
             value={companyName}
             list="companies"
@@ -113,6 +117,7 @@ const AddProduct = (props: any) => {
             placeholder="company name *required"
             type="text"
             name="companyName"
+            className="company-name-input"
           />
           <datalist id="companies">
             <option value="A Company" />
@@ -126,26 +131,30 @@ const AddProduct = (props: any) => {
             placeholder="product name *required"
             type="text"
             name="productName"
+            className="product-name-input"
           />
           <input
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            placeholder="set the price *required"
+            placeholder="set the price *required number only"
             name="price"
+            className="price-input"
           />
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="set the description"
             name="description"
+            className="description-input"
           />
+          {image && <img src={image} alt="preview" className="preview-image"/>}
           <input
             type="file"
             accept=".gif,.jpg,.jpeg,.png"
             onChange={loadImage}
           />
-        </form>
-        <button onClick={() => addNewItem()}>Submit</button>
+        </div>
+        <button onClick={() => addNewItem()} className="submit-button">Submit</button>
       </Modal>
       <ToastContainer
         position="top-right"
@@ -161,5 +170,3 @@ const AddProduct = (props: any) => {
     </div>
   );
 };
-
-export default AddProduct;

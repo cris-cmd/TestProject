@@ -11,3 +11,34 @@
   display: flex;
   justify-content: right;
 }
+
+.new-product-form {
+  height: 350px;
+  width: 500px;
+}
+
+.company-name-input,
+.product-name-input,
+.price-input {
+  margin: 0 0 10px 0;
+  height: 20px;
+}
+
+.description-input {
+  width: 494px;
+  max-width: 494px;
+  height: 80px;
+  resize: none;
+}
+
+.preview-image {
+  height: 100px;
+  width: 100px;
+  border: solid 1px black;
+}
+
+.submit-button {
+  margin: 0 0 0 400px;
+  width: 70px;
+  height: 40px;
+}

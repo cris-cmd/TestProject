@@ -14,13 +14,12 @@ type CompanyItems={
 
 function App() {
   const [itemsData, setItemsData] = useState(companyData)
+  const [searchResult, setSearchResult] = useState([]) 
   return (
     <div className="App">
       <AddProduct items={itemsData} onChange={(newItemData:CompanyItems[]) =>{setItemsData(newItemData)}}/>
-      <Searcher items={itemsData}/>
-      <CompanyListTable items={itemsData} onChange={(newItemData:CompanyItems[]) =>{setItemsData(newItemData)}}/>
-     <div>RevZon.com</div>
-     <div className="footer">Copyright © {new Date().getFullYear()} Tao Takahashi Projects. All Rights Reserved</div>
+      <Searcher items={itemsData} onChange={(newItemData:CompanyItems[]) =>{setItemsData(newItemData)}} setSearch={((searchData:any) => {setSearchResult(searchData)})}/>
+      <CompanyListTable items={itemsData} onChange={(newItemData:CompanyItems[]) =>{setItemsData(newItemData)}} searchResult={searchResult}/>
     </div>
   );
 }

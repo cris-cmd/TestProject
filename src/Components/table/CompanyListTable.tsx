@@ -23,8 +23,7 @@ const customStyles = {
 };
 Modal.setAppElement("#root");
 
-//!fix later
-const CompanyListTable = (props: any) => {
+export default function CompanyListTable(props:{items:CompanyItems[], onChange:any, searchResult:any}){
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedItemDetail, setSelectedItemDetail] = useState({
     item: { company: "", product: "", price: "", description: "", image: "" },
@@ -39,12 +38,12 @@ const CompanyListTable = (props: any) => {
   const items = props.items || [];
   function showDetails(item: CompanyItems, index: number) {
     setIsOpen(true);
-    //! fix later
-    let obj: any = { item, index };
+    let obj = { item, index };
     setSelectedItemDetail(obj);
   }
   function closeModal() {
     setIsOpen(false);
+    setIsEditing(false);
   }
   function deleteItem() {
     let array = [...props.items];
@@ -52,13 +51,13 @@ const CompanyListTable = (props: any) => {
     array.splice(index, 1);
     props.onChange(array);
     setIsOpen(false);
-    toastDeleteSuccess();
+    toastSuccess("delete successful!!");
   }
   function editItem() {
     setIsEditing(true);
   }
-  const toastEditSuccess = () => {
-    toast.success("edit successful!!", {
+  const toastSuccess = (message: string) => {
+    toast.success(message , {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -68,17 +67,13 @@ const CompanyListTable = (props: any) => {
       progress: undefined,
     });
   };
-  const toastDeleteSuccess = () => {
-    toast.success("delete successful!!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
+  function toDefault(){
+    setCompanyName("")
+    setProductName("")
+    setPrice("")
+    setDescription("")
+    setImage("")
+  }
   function saveItem() {
     if (!productName && !price && !description && !image && !companyName) {
       setIsEditing(false);
@@ -95,7 +90,8 @@ const CompanyListTable = (props: any) => {
       props.onChange(array);
       setSelectedItemDetail({ item: newObj, index: selectedItemDetail.index });
       setIsEditing(false);
-      toastEditSuccess();
+      toastSuccess("edit successful!!");
+      toDefault()
     }
   }
   function loadImage(event: any) {
@@ -106,6 +102,13 @@ const CompanyListTable = (props: any) => {
       setImage(data);
     };
     reader.readAsDataURL(file);
+  }
+  function showResult(){
+    if(props.searchResult.length !== 0){
+      return props.searchResult
+    }else{
+      return props.items
+    }
   }
   return (
     <div className="table-container">
@@ -120,7 +123,7 @@ const CompanyListTable = (props: any) => {
         </thead>
         <tbody>
           {items &&
-            props.items.map((item: CompanyItems, index: number) => (
+            showResult().map((item: CompanyItems, index: number) => (
               <tr key={index}>
                 <td>{item.company}</td>
                 <td>{item.product}</td>
@@ -260,5 +263,3 @@ const CompanyListTable = (props: any) => {
     </div>
   );
 };
-
-export default CompanyListTable;
