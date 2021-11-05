@@ -1,0 +1,23 @@
+.search-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin: 50px 0 0;
+}
+
+.company-input {
+  height: 30px;
+  width: 250px;
+  margin: 0 20px 0 0;
+}
+
+.product-input {
+  height: 30px;
+  width: 250px;
+  margin: 0 20px 0 0;
+}
+
+.search-button {
+  margin: 0 0 0 10px;
+  width: 80px;
+}

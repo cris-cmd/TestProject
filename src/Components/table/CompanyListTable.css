@@ -1,0 +1,79 @@
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 0;
+}
+
+table {
+  border: solid 1px #9b9b9b;
+  height: 350px;
+  width: 800px;
+  max-width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+}
+
+th {
+  border: 1px solid #9b9b9b;
+  height: 40px;
+}
+
+td {
+  border: 1px solid #9b9b9b;
+  font-family: Sans-serif;
+}
+
+.detail-button {
+  cursor: pointer;
+  height: 35px;
+  width: 80px;
+}
+
+.action {
+  width: 150px;
+}
+
+.item-detail-container {
+  height: 400px;
+  max-width: 500px;
+  padding: 20px 30px;
+}
+.item-detail-header {
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+}
+
+.item-detail-product-name {
+  color: black;
+  margin: 0;
+}
+.item-detail-name-price {
+  width: 240px;
+}
+
+.item-detail-product-image {
+  border: solid 1px black;
+  height: 120px;
+  width: 120px;
+  margin: 0 0 0 140px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 60px 0 0;
+}
+
+.delete-button {
+  background-color: #f44336;
+  height: 40px;
+  width: 70px;
+}
+
+.edit-save-button {
+  background-color: #3698f4;
+  height: 40px;
+  width: 70px;
+}

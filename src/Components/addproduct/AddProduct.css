@@ -1,0 +1,13 @@
+.button {
+  height: 30px;
+}
+
+.new-product-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-product-button-container {
+  display: flex;
+  justify-content: right;
+}
