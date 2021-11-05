@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
-import Searcher from './Components/search/SearchPage';
-import AddProduct from './Components/addproduct/AddProductButton';
-import CompanyListTable  from './Components/table/CompanyListTable';
+import Searcher from './components/search/SearchPage';
+import AddProduct from './components/addproduct/AddProductButton';
+import CompanyListTable  from './components/table/CompanyListTable';
 import { companyData } from './data/companyData';
 type CompanyItems={
   company: string
