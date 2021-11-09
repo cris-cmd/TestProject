@@ -23,8 +23,10 @@ type CompanyItems = {
 };
 
 Modal.setAppElement("#root");
-//!props:any is bad practice fix later
-export default function AddProduct(props: {items:CompanyItems[], onChange:any}){
+export default function AddProduct(props: {
+  items: CompanyItems[];
+  onChange: any;
+}) {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const [companyName, setCompanyName] = useState("");
@@ -61,7 +63,6 @@ export default function AddProduct(props: {items:CompanyItems[], onChange:any}){
       progress: undefined,
     });
   };
-  //! fix later
   function addNewItem() {
     if (
       companyName &&
@@ -69,7 +70,7 @@ export default function AddProduct(props: {items:CompanyItems[], onChange:any}){
       price !== "" &&
       typeof parseInt(price) === "number"
     ) {
-      let obj: any = {
+      let obj: CompanyItems = {
         company: companyName,
         product: productName,
         price: price,
@@ -106,9 +107,7 @@ export default function AddProduct(props: {items:CompanyItems[], onChange:any}){
         style={customStyles}
         contentLabel="Add Product Modal"
       >
-        <div className="title">
-             Add Item
-        </div>
+        <div className="title"> Add Item</div>
         <div className="new-product-form">
           <input
             value={companyName}
@@ -123,7 +122,7 @@ export default function AddProduct(props: {items:CompanyItems[], onChange:any}){
             <option value="A Company" />
             <option value="B Inc" />
             <option value="C Inc" />
-            <option value="Z Company"/>
+            <option value="Z Company" />
           </datalist>
           <input
             value={productName}
@@ -147,14 +146,16 @@ export default function AddProduct(props: {items:CompanyItems[], onChange:any}){
             name="description"
             className="description-input"
           />
-          {image && <img src={image} alt="preview" className="preview-image"/>}
+          {image && <img src={image} alt="preview" className="preview-image" />}
           <input
             type="file"
             accept=".gif,.jpg,.jpeg,.png"
             onChange={loadImage}
           />
         </div>
-        <button onClick={() => addNewItem()} className="submit-button">Submit</button>
+        <button onClick={() => addNewItem()} className="submit-button">
+          Submit
+        </button>
       </Modal>
       <ToastContainer
         position="top-right"
@@ -169,4 +170,4 @@ export default function AddProduct(props: {items:CompanyItems[], onChange:any}){
       />
     </div>
   );
-};
+}

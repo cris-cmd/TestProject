@@ -23,7 +23,11 @@ const customStyles = {
 };
 Modal.setAppElement("#root");
 
-export default function CompanyListTable(props:{items:CompanyItems[], onChange:any, searchResult:any}){
+export default function CompanyListTable(props: {
+  items: CompanyItems[];
+  onChange: any;
+  searchResult: any;
+}) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedItemDetail, setSelectedItemDetail] = useState({
     item: { company: "", product: "", price: "", description: "", image: "" },
@@ -57,7 +61,7 @@ export default function CompanyListTable(props:{items:CompanyItems[], onChange:a
     setIsEditing(true);
   }
   const toastSuccess = (message: string) => {
-    toast.success(message , {
+    toast.success(message, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -67,12 +71,12 @@ export default function CompanyListTable(props:{items:CompanyItems[], onChange:a
       progress: undefined,
     });
   };
-  function toDefault(){
-    setCompanyName("")
-    setProductName("")
-    setPrice("")
-    setDescription("")
-    setImage("")
+  function toDefault() {
+    setCompanyName("");
+    setProductName("");
+    setPrice("");
+    setDescription("");
+    setImage("");
   }
   function saveItem() {
     if (!productName && !price && !description && !image && !companyName) {
@@ -91,7 +95,7 @@ export default function CompanyListTable(props:{items:CompanyItems[], onChange:a
       setSelectedItemDetail({ item: newObj, index: selectedItemDetail.index });
       setIsEditing(false);
       toastSuccess("edit successful!!");
-      toDefault()
+      toDefault();
     }
   }
   function loadImage(event: any) {
@@ -103,11 +107,11 @@ export default function CompanyListTable(props:{items:CompanyItems[], onChange:a
     };
     reader.readAsDataURL(file);
   }
-  function showResult(){
-    if(props.searchResult.length !== 0){
-      return props.searchResult
-    }else{
-      return props.items
+  function showResult() {
+    if (props.searchResult.length !== 0) {
+      return props.searchResult;
+    } else {
+      return props.items;
     }
   }
   return (
@@ -140,7 +144,6 @@ export default function CompanyListTable(props:{items:CompanyItems[], onChange:a
             ))}
         </tbody>
       </table>
-      {!items && <div>no results</div>}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -262,4 +265,4 @@ export default function CompanyListTable(props:{items:CompanyItems[], onChange:a
       />
     </div>
   );
-};
+}
