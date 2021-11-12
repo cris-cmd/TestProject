@@ -27,7 +27,7 @@ export default function Searcher(props: { items: any; setSearch: any }) {
     } else {
       if (companyName) {
         let companyResult = props.items
-          .filter((o: any) =>
+          .filter((o:any) =>
             o.company.toLowerCase().includes(companyName.toLowerCase())
           )
           .sort(

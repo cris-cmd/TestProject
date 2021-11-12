@@ -9,7 +9,7 @@ type CompanyItems = {
   product: string;
   price: string;
   description: string;
-  image: string;
+  image: any;
 };
 
 function App() {

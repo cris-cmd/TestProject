@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import "./AddProduct.css";
 import Modal from "react-modal";
 import { ToastContainer, toast } from "react-toastify";
@@ -19,13 +19,13 @@ type CompanyItems = {
   product: string;
   price: string;
   description: string;
-  image: string;
+  image: string | null;
 };
 
 Modal.setAppElement("#root");
 export default function AddProduct(props: {
   items: CompanyItems[];
-  onChange: any;
+  onChange: (array: CompanyItems[]) => void;
 }) {
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -33,7 +33,7 @@ export default function AddProduct(props: {
   const [productName, setProductName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState<string | null>("");
 
   function openModal() {
     setIsOpen(true);
@@ -87,14 +87,19 @@ export default function AddProduct(props: {
     }
   }
   //! fix any later
-  function loadImage(event: any) {
-    const file = event.target.files[0];
+  function loadImage(file:any){
     const reader = new FileReader();
+    let data:any
     reader.onloadend = () => {
-      const data: any = reader.result;
+      data = reader.result;
       setImage(data);
     };
     reader.readAsDataURL(file);
+  }
+  function fileReturnCondition(e:Event){
+    let file = (e.target as HTMLInputElement).files;
+    let condition = file !== null ? file[0] : null
+    loadImage(condition)
   }
   return (
     <div className="add-product-button-container">
@@ -150,7 +155,7 @@ export default function AddProduct(props: {
           <input
             type="file"
             accept=".gif,.jpg,.jpeg,.png"
-            onChange={loadImage}
+            onChange={(e:any) =>{fileReturnCondition(e)}}
           />
         </div>
         <button onClick={() => addNewItem()} className="submit-button">

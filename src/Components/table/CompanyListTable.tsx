@@ -25,8 +25,8 @@ Modal.setAppElement("#root");
 
 export default function CompanyListTable(props: {
   items: CompanyItems[];
-  onChange: any;
-  searchResult: any;
+  onChange: (array: CompanyItems[]) => void;
+  searchResult: CompanyItems[];
 }) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedItemDetail, setSelectedItemDetail] = useState({
